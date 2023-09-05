@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 
-""" 
-    Matrix divided
-    Divides all elements of a matrix 
-    Returns a new matrix
-    
 """
+    Matrix divided
+    Divides all elements of a matrix
+    Returns a new matrix
+"""
+
 
 def matrix_divided(matrix, div):
     """Divides all elements by div and return new matrix
@@ -15,7 +15,8 @@ def matrix_divided(matrix, div):
     for row in matrix:
         for item in row:
             if not isinstance(item, (int, float)):
-                raise TypeError("matrix must be a matrix(list of lists) of integers/floats")
+                raise TypeError("matrix must be a matrix(list of lists) \
+                of integers/floats")
     first_row_len = len(matrix[0])
     for row in matrix[1:]:
         if len(row) != first_row_len:
