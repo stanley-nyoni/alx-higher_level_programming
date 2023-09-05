@@ -1,0 +1,30 @@
+Test Module for say_my_name
+
+Import the function to be tested:
+>>> say_my_name = __import__('3-say_my_name').say_my_name
+
+Cases:
+
+VALID FIRST NAME AND LAST NAME
+>>> say_my_name("Stanley", "Nyoni")
+My name is Stanley Nyoni
+
+VALID FIRST NAME AND EMPTY LAST NAME
+>>> say_my_name("Mqelisi")
+My name is Mqelisi 
+
+VALID FIRST NAME AND INVALID LAST NAME(int)
+>>> say_my_name("Stanley", 77)
+Traceback (most recent call last):
+    ...
+TypeError: last_name must be a string
+
+EMPTY FIRST NAME AND VALID LAST NAME
+>>> say_my_name("", "Nyoni")
+My name is  Nyoni
+
+INVALID FIRST NAME(list) AND VALID LAST NAME
+>>> say_my_name(["Mqelisi", "Stanley"], "Nyoni")
+Traceback (most recent call last):
+    ...
+TypeError: first_name must be a string
