@@ -1,0 +1,30 @@
+Test for 1-my_list
+
+
+>>> MyList = __import__('1-my_list').MyList
+
+Test Cases:
+
+APPEND IMTEMS IN RANDOM ORDER
+>>> my_list = MyList()
+>>> my_list.append(1)
+>>> my_list.append(3)
+>>> my_list.append(5)
+>>> my_list.append(2)
+>>> my_list
+[1, 3, 5, 2]
+
+
+SORT ITEMS
+>>> my_list.print_sorted()
+[1, 2, 3, 5]
+
+APPEND ITEMS WITH SOME REPEATED
+>>> my_list = MyList([4, 3, 3, 1, 2, 4])
+>>> my_list.print_sorted()
+[1, 2, 3, 3, 4, 4]
+
+WITH SOME NEGATIVE INTS
+>>> my_list = MyList([0, -9, 4, 5, -1, 1, 2])
+>>> my_list.print_sorted()
+[-9, -1, 0, 1, 2, 4, 5]
