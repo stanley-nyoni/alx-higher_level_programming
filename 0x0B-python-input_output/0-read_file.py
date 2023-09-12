@@ -9,6 +9,8 @@ def read_file(filename=""):
         filename:str : name of file
     """
     with open(filename, "r", encoding="utf-8") as f:
-        for line in f:
-            print(line, end="")
+        read_chars = f.read()
+        while (len(read_chars) > 0):
+            print(read_chars, end="")
+            read_chars = f.read()
         print()
