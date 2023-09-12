@@ -4,10 +4,8 @@
 
 
 def read_file(filename=""):
-    """"Reading  from a txt file
-    Args:
-        filename:str : name of file
-    """
+    """"Reading  from a txt file"""
+    
     with open(filename, "r", encoding="utf-8") as f:
         read_chars = f.read()
         while (len(read_chars) > 0):
