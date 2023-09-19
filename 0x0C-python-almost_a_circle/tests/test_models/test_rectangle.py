@@ -150,7 +150,84 @@ class TestRectangle(unittest.TestCase):
         expected_result = "[Rectangle] (50) 30/40 - 10/20"
         self.assertEqual(str_repr, expected_result)
 
+    def test_rectangle_update_with_args(self):
+        """Check if succesfully unpacked and asigned the args to respective attributes"""
+
+        rect9 = Rectangle(10, 20, 30, 40)
+
+        rect9.update(89)
+        self.assertEqual(rect9.id, 89)
+
+        rect9.update(1, 2)
+        self.assertEqual(2, rect9.width)
+
+        rect9.update(1, 2, 3)
+        self.assertEqual(3, rect9.height)
+
+        rect9.update(1, 2, 3, 4)
+        self.assertEqual(4, rect9.x)
+
+        rect9.update(1, 2, 3, 4, 5)
+        self.assertEqual(5, rect9.y)
+
+        rect9.update(1, 2, 3, 4, 5)
+        self.assertEqual(str(rect9), "[Rectangle] (89) 4/5 - 2/3")
+
+    def test_rectangle_update_with_wrong_type_args(self):
+        """Check the args if correctly validated"""
+
+        rect = Rectangle(10, 20, 30, 40)
+
+        with self.assertRaises(TypeError) as context:
+            rect.update(1, "one")
+        self.assertEqual("width must be an integer", str(context.exception))
+
+        with self.assertRaises(TypeError) as context:
+            rect.update(1, 3, 4, "one")
+        self.assertEqual("x must be an integer", str(context.exception))
+
+        with self.assertRaises(TypeError) as context:
+            rect.update(1, 3, 5, 6, "one")
+        self.assertEqual("y must be an integer", str(context.exception))
+
     
+    def test_update_with_args_and_kwargs(self):
+        """Check if succssfully unpacked the kwargs"""
+
+        rect = Rectangle(10, 20, 30, 40)
+
+        rect.update(id=10)
+        self.assertEqual(10, rect.id)
+
+        rect.update(x=3, id=10)
+        self.assertEqual(3, rect.x)
+
+        rect.update(y=22, x=3)
+        self.assertEqual(22, rect.y)
+
+        rect.update(id=10, x=3, y=22, height=5, width=8)
+        self.assertEqual(8, rect.width)
+        self.assertEqual(5, rect.height)
+
+    def test_update_with_wrong_type_args_and_kwargs(self):
+        """Check if attributes correctly validated"""
+
+        rect = Rectangle(10, 20, 30, 40)
+
+        with self.assertRaises(TypeError) as context:
+            rect.update(id=2, width="one")
+        self.assertEqual("width must be an integer", str(context.exception))
+
+        with self.assertRaises(TypeError) as context:
+            rect.update(id=2, width=6, x="nine")
+        self.assertEqual("x must be an integer", str(context.exception))
+
+        with self.assertRaises(TypeError) as context:
+            rect.update(id=2, width=7, y="ten", height=11)
+        self.assertEqual("y must be an integer", str(context.exception))
+
+    
+
 
 if __name__ == '__main__':
     unittest.main()
