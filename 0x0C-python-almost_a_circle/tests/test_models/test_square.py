@@ -53,9 +53,6 @@ class TestSquare(unittest.TestCase):
         sq.update(3)
         self.assertEqual(sq.id, 3)
 
-        sq.update(height=3)
-        self.assertEqual(sq.height, 3)
-
     def test_square_size_getter_and_setter(self):
         """Check if the getter and setter works properly"""
 
@@ -95,8 +92,77 @@ class TestSquare(unittest.TestCase):
             sq = Square(12, 3, -33 )
         self.assertEqual("y must be >= 0", str(context.exception))
 
+    def test_square_update_args(self):
+        """Check upacking args for square attributes"""
+
+        sq = Square(23, 3, 5)
+        self.assertEqual("[Square] (1) 3/5 - 23", str(sq))
+
+        sq.update(23)
+        self.assertEqual("[Square] (23) 3/5 - 23", str(sq))
+
+        sq.update(23, 9)
+        self.assertEqual("[Square] (23) 3/5 - 9", str(sq))
+
+        sq.update(23, 9, 11)
+        self.assertEqual("[Square] (23) 11/5 - 9", str(sq))
+
+        sq.update(23, 9, 11, 6)
+        self.assertEqual("[Square] (23) 11/6 - 9", str(sq))
+
+        with self.assertRaises(TypeError) as context:
+            sq.update("two")
+        self.assertEqual("id must be an integer", str(context.exception))
 
 
+    def test_square_update_kwargs(self):
+        """Check unpacking kwargs for square attributes"""
+
+        sq = Square(10)
+        sq.update(id=2)
+        self.assertEqual(sq.id, 2)
+
+        with self.assertRaises(TypeError) as context:
+            sq.update(id="two")
+        self.assertEqual("id must be an integer", str(context.exception))
+
+        sq.update(x=99, y=88)
+        self.assertEqual("[Square] (2) 99/88 - 10", str(sq))
+
+        sq.update(id=11, size=12, x=13, y=14)
+        self.assertEqual(sq.size, 12)
+        self.assertEqual(sq.id, 11)
+        self.assertEqual(sq.y, 14)
+        self.assertEqual(sq.x, 13)
+
+    def test_square_to_dictionary(self):
+        """Check Square dictionary represantion"""
+
+        sq = Square(15, 25, 20)
+        self.assertEqual("[Square] (1) 25/20 - 15", str(sq))
+
+        sq_dict = sq.to_dictionary()
+        self.assertEqual("{'id': 1, 'x': 25, 'y': 20, 'size': 15}", str(sq_dict))
+        self.assertEqual(type(sq_dict), dict)
+        self.assertEqual(sq_dict["x"], sq.x)
+        self.assertEqual(sq_dict["y"], sq.y)
+        self.assertEqual(sq_dict["id"], sq.id)
     
+    def test_square_to_dictionary_unpacking(self):
+        """Unpacking a dictionary represantion of Square to update another Square object"""
+
+        sq = Square(10, 20, 30)
+        sq_dict = sq.to_dictionary()
+
+        sq1 = Square(1, 2, 3)
+        sq1.update(**sq_dict)
+        self.assertEqual(sq1.x, sq.x)
+        self.assertEqual(sq_dict["x"], sq1.x)
+        self.assertTrue(type(sq1), object)
+        self.assertFalse(sq == sq1)
+
+
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -190,7 +190,6 @@ class TestRectangle(unittest.TestCase):
             rect.update(1, 3, 5, 6, "one")
         self.assertEqual("y must be an integer", str(context.exception))
 
-    
     def test_update_with_args_and_kwargs(self):
         """Check if succssfully unpacked the kwargs"""
 
@@ -226,7 +225,32 @@ class TestRectangle(unittest.TestCase):
             rect.update(id=2, width=7, y="ten", height=11)
         self.assertEqual("y must be an integer", str(context.exception))
 
-    
+    def test_rectangle_to_dictionary(self):
+        """Check rectangle dictionary represantion"""
+
+        rect = Rectangle(10, 20, 30, 40)
+        self.assertEqual("[Rectangle] (1) 30/40 - 10/20", str(rect))
+
+        rect_dict = rect.to_dictionary()
+        self.assertEqual("{'id': 1, 'width': 10, 'height': 20, 'x': 30, 'y': 40}", str(rect_dict))
+        self.assertEqual(type(rect_dict), dict)
+        self.assertEqual(rect_dict["x"], rect.x)
+        self.assertEqual(rect_dict["id"], rect.id)
+
+    def test_rectangle_to_dictionary_upacking(self):
+        """Lets unpack the dictionary to update a Rectangle object"""
+
+        rect = Rectangle(10, 20, 30, 40)
+        rect_dict = rect.to_dictionary()
+
+        rect1 = Rectangle(99, 88)
+        rect1.update(**rect_dict)
+
+        self.assertEqual(rect1.x, rect.x)
+        self.assertEqual(rect1.width, 10)
+
+        rect1.update(width=12, height=12)
+        self.assertEqual(144, rect1.area())
 
 
 if __name__ == '__main__':
