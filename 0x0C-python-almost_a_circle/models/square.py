@@ -74,6 +74,7 @@ class Square(Rectangle):
                     self.y = value
     
     def to_dictionary(self):
+        """Returns dictionary represantion of square"""
         base_dict = super().to_dictionary()
 
         base_dict["size"] = self.size
