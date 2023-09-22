@@ -34,5 +34,50 @@ class Square(Rectangle):
             self.__height = value
 
     def __str__(self):
+        """String represantation of a square"""
         return "[Square] ({}) {}/{} - {}".\
             format(self.id, self.x, self.y, self.size)
+
+    def update(self, *args, **kwargs):
+        """Upadates square using args and kwargs"""
+
+        if args is not None and len(args) != 0:
+            if len(args) == 1:
+                if isinstance(args[0], int):
+                    self.id = args[0]
+                else:
+                    raise TypeError("id must be an integer")
+            elif len(args) == 2:
+                self.id = args[0]
+                self.size = args[1]
+            elif len(args) == 3:
+                self.id = args[0]
+                self.size = args[1]
+                self.x = args[2]
+            elif len(args) == 4:
+                self.id = args[0]
+                self.size = args[1]
+                self.x = args[2]
+                self.y = args[3]
+        else:
+            for key, value in kwargs.items():
+                if key == 'id':
+                    if isinstance(value, int):
+                        self.id = value
+                    else:
+                        raise TypeError("id must be an integer")
+                elif key == 'size':
+                    self.size = value
+                elif key == 'x':
+                    self.x = value
+                elif key == 'y':
+                    self.y = value
+    
+    def to_dictionary(self):
+        base_dict = super().to_dictionary()
+
+        base_dict["size"] = self.size
+        del base_dict["width"]
+        del base_dict["height"]
+
+        return base_dict
