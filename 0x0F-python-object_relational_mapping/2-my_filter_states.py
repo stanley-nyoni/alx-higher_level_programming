@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
     my_cursor = db.cursor()
     my_cursor.execute("SELECT * FROM states WHERE name LIKE \
-                      BINARY %s ORDER BY id", (state_name,))
+                      '{:s}' ORDER BY id".format(state_name))
 
     states = my_cursor.fetchall()
     for state in states:
