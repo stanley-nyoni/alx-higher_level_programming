@@ -2,8 +2,7 @@
 
 """
     Module: 2-my_filter_states
-    Lists all values in the states table of \
-    hbtn_0e_0_usa where name matches the argument
+    Lists all states matching the argument
 """
 
 import sys
