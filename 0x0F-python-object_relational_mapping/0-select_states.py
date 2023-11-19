@@ -24,3 +24,7 @@ if __name__ == "__main__":
     states = my_cursor.fetchall()
     for state in states:
         print(state)
+
+    
+    my_cursor.close()
+    db.close()
