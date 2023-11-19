@@ -25,11 +25,12 @@ if __name__ == "__main__":
 
     my_cursor = db.cursor()
     my_cursor.execute("SELECT * FROM states WHERE name LIKE \
-                      '{:s}' ORDER BY id".format(state_name))
+                      '{:s}' ORDER BY id ASC".format(state_name))
 
     states = my_cursor.fetchall()
     for state in states:
-        print(state)
+        if state[1] == state_name:
+            print(state)
 
     my_cursor.close()
     db.close()
