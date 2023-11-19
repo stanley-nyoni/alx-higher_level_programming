@@ -1,10 +1,16 @@
 #!/usr/bin/python3
 
+"""
+    Module: 0-select_states
+    Lists all states from database
+"""
+
+
+import sys
+import MySQLdb
+
 
 if __name__ == "__main__":
-
-    import sys
-    import MySQLdb
 
     username = sys.argv[1]
     password = sys.argv[2]
