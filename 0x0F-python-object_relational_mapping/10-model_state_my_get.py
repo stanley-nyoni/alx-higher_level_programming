@@ -28,4 +28,4 @@ if __name__ == "__main__":
     if state:
         print(state.id)
     else:
-        print("Error 404: State Not found")
+        print("Not found")
