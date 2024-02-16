@@ -1,3 +1,10 @@
+#!/usr/bin/python3
+
+"""
+    Module: model_state.py
+    contains the class definition of a State
+"""
+
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String
 
