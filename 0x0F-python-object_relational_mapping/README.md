@@ -1,7 +1,7 @@
-## Python - Object-relational mapping
-# Python
-# OOP
-# SQL
-# MySQL
-# ORM
-# SQLAlchemy
+# Python - Object-relational mapping
+## Python
+## OOP
+## SQL
+## MySQL
+## ORM
+## SQLAlchemy
